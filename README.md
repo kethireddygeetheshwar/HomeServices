@@ -90,17 +90,19 @@ If your root account has a password or MariaDB uses another port, set `DB_URL`, 
 
 The app uses Spring Boot's embedded Tomcat. You do not need to create a separate Tomcat server in STS or deploy a WAR for local development.
 
+
+
 ## 6. Local admin account
 
-The application creates this development admin account if it does not already exist:
+The application bootstraps an initial administrator account using environment variables.
 
-- Email: `admin@homeservices.local`
-- Password: `ChangeMe123!`
+- Email: `admin@homeservices.local` (configurable through `ADMIN_EMAIL`)
+- Password: Must be supplied through `ADMIN_PASSWORD`
 - Dashboard: `http://localhost:8080/admin/dashboard`
 
-Override with `ADMIN_EMAIL` and `ADMIN_PASSWORD`. **This default is for local development only. Change it before sharing or deploying the application.**
+No default admin password is stored in the project. Configure a strong password in your local environment before starting the application.
 
-There are no default customer/provider accounts. Register them through `/register` and `/register/provider`; approve provider applications from the admin dashboard before they can publish services.
+There are no default customer or provider accounts. Register them through `/register` and `/register/provider`. Provider applications require admin approval before providers can publish services.
 
 ## 7. Run automated unit tests
 
