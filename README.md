@@ -68,12 +68,12 @@ Do not manually create entity tables. Hibernate creates/updates them using `spri
 
 Default local connection in `src/main/resources/application.properties`:
 
-- JDBC URL: `jdbc:mariadb://localhost:3306/homeservices`
-- Username: `root`
-- Password: blank (common XAMPP default)
+- JDBC URL: `jdbc:mariadb://localhost:3306/homeservices` (default; override with `DB_URL` if needed)
+- Username: set `DB_USERNAME=root` for the standard XAMPP account
+- Password: XAMPP's local `root` account is often configured with no password; for that setup, leave `DB_PASSWORD` unset so the application's `${DB_PASSWORD:}` fallback is empty
 - Driver: `org.mariadb.jdbc.Driver`
 
-If your root account has a password or MariaDB uses another port, set `DB_URL`, `DB_USERNAME` and `DB_PASSWORD` as environment variables. The application properties now read those variables directly. SQL logging can be enabled with `JPA_SHOW_SQL=true` and `HIBERNATE_SQL_LOG_LEVEL=DEBUG`.
+`DB_USERNAME` is required. Set `DB_PASSWORD` when your MariaDB account has a password. Configure these values in your STS launch configuration under **Run Configurations → Environment**; do not commit real credentials. SQL logging can be enabled with `JPA_SHOW_SQL=true` and `HIBERNATE_SQL_LOG_LEVEL=DEBUG`.
 
 ## 3. Import into STS 5.4.0
 
@@ -111,7 +111,7 @@ The application bootstraps an initial administrator account using environment va
 - Password: Must be supplied through `ADMIN_PASSWORD`
 - Dashboard: `http://localhost:8080/admin/dashboard`
 
-No default admin password is stored in the project. Configure a strong password in your local environment before starting the application.
+No default admin password is stored in the project. Set `ADMIN_PASSWORD` in your local environment before starting the application. Use a strong password; when the `prod` Spring profile is active, the application requires at least 16 characters.
 
 There are no default customer or provider accounts. Register them through `/register` and `/register/provider`. Provider applications require admin approval before providers can publish services.
 
