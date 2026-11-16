@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101416">
+  <title>HomeServices | Thoughtful care for every home</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/style.css(v=6)}">
+</head>
+<body class="hs-home-page">
+<div th:replace="~{fragments/layout :: header}"></div>
+<div th:replace="~{fragments/layout :: alerts}"></div>
+<main>
+  <section class="hero hs-cinematic" aria-labelledby="home-hero-title">
+    <div class="hero-ambience" aria-hidden="true">
+      <span class="hero-light-column hero-light-column-one"></span>
+    </div>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow hero-eyebrow" data-cinematic-reveal>
+          Home care, made easier
+        </span>
+        <h1 id="home-hero-title" class="hero-title" aria-label="Your home deserves extraordinary care.">
+          <span class="hero-title-line"><span>Find the right people</span></span>
+          <span class="hero-title-line hero-title-line-accent"><em>to care for your home.</em></span>
+        </h1>
+        <p class="hero-lead" data-cinematic-reveal>
+          Compare local professionals, check their services and choose a published time that works for you.
+        </p>
+
+        <form class="search-panel hs-search-panel" th:action="@{/services}" method="get" aria-label="Find a home service">
+          <label class="search-field">
+            <span>Service</span>
+            <select name="category">
+              <option value="">Explore all services</option>
+              <option th:each="cat : ${categories}" th:value="${cat.name}" th:text="${cat.name}"></option>
+            </select>
+          </label>
+          <label class="search-field">
+            <span>City</span>
+            <input name="city" placeholder="Enter your city" autocomplete="address-level2">
+          </label>
+          <button class="btn btn-gold hs-magnetic" type="submit" data-cursor-label="FIND">Find my professional <span aria-hidden="true">↗</span></button>
+        </form>
+
+        <div class="hero-action-row" data-cinematic-reveal>
+          <a class="hero-explore-link" th:href="@{/services}">
+            <span class="hero-play-icon" aria-hidden="true">→</span>
+            <span><strong>Browse all services</strong><small>See local listings and providers</small></span>
+          </a>
+          <span class="hero-action-divider" aria-hidden="true"></span>
+          <span class="hero-note">Clear choices. Real availability.<br>Booking on your terms.</span>
+        </div>
+        <div class="trust-line hero-trust" data-cinematic-reveal>Approved provider listings <i></i> Published availability <i></i> Booking requests you control</div>
+      </div>
+
+      <div class="hero-art" data-immersive-stage data-cursor-label="SPIN 3D" role="group" aria-label="Animated 3D illustration of a cared-for home">
+        <div class="hero-card main-card">
+          <div class="hero-card-top"><span class="mini-label">HOME CARE</span><span class="live-pill">LOCAL SERVICES</span></div>
+          <div class="home-3d-art" data-service-scene="home" data-three-scene="home" aria-hidden="true"></div>
+          <div class="hero-card-copy"><span class="hero-card-kicker">THE RIGHT HELP, CLOSE TO HOME</span><h3>Thoughtful work<br><em>starts here.</em></h3></div>
+          <div class="hero-card-bottom"><span>Explore services for every corner of home</span></div>
+        </div>
+      </div>
+
+      <a class="hero-scroll-cue" href="#categories" aria-label="Scroll to explore services">
+        <span class="hero-scroll-line"><i></i></span><span>Explore services</span><b aria-hidden="true">↓</b>
+      </a>
+    </div>
+  </section>
+
+  <section class="section container hs-discovery-section" id="categories">
+    <div class="section-heading"><div><span class="eyebrow">THE CARE YOUR HOME CALLS FOR</span><h2>Every corner has a story.<br><em>We help you care for it.</em></h2></div><a class="text-link" th:href="@{/services}" data-cursor-label="VIEW ALL">Explore all services →</a></div>
+    <div class="category-grid"><a class="category-card" th:each="cat : ${categories}" th:href="@{/services(category=${cat.name})}" data-cursor-label="EXPLORE"><span class="category-index" aria-hidden="true">—</span><div class="category-mini-scene" data-service-scene th:data-category="${cat.name}" aria-hidden="true"></div><strong th:text="${cat.name}">Electrician</strong><small th:text="${cat.description}">Repairs and maintenance</small><span class="category-arrow">↗</span></a></div>
+  </section>
+
+  <section class="dark-band hs-story-band"><div class="container dark-band-inner"><div><span class="eyebrow">A BETTER WAY TO BOOK</span><h2>Good work. Good people.<br><em>No guesswork.</em></h2></div><div class="benefits"><div><span>01</span><strong>Choose with clarity</strong><p>Explore provider profiles, services and transparent starting prices.</p></div><div><span>02</span><strong>Book a real time slot</strong><p>Choose from the provider’s published availability.</p></div><div><span>03</span><strong>Share your experience</strong><p>Leave a rating after your service is completed.</p></div></div></div></section>
+
+  <section class="journey-section"><div class="container journey-inner"><div class="journey-heading"><div><span class="eyebrow">A SIMPLE, CLEAR PROCESS</span><h2>From “I need help”<br><em>to “all sorted.”</em></h2></div><p>See the service, check a real availability slot and send a booking request. You stay in control at every step.</p></div><div class="journey-grid"><article class="journey-step"><span class="journey-number">01</span><span class="journey-icon" aria-hidden="true">⌕</span><h3>Find your service</h3><p>Search by service, category or city and compare local provider listings.</p></article><article class="journey-step"><span class="journey-number">02</span><span class="journey-icon" aria-hidden="true">◷</span><h3>Choose a time</h3><p>Open a service, check the provider’s published slots and pick what suits you.</p></article><article class="journey-step"><span class="journey-number">03</span><span class="journey-icon" aria-hidden="true">✓</span><h3>Send your request</h3><p>Your request stays pending until the provider confirms it. Review the work when it’s complete.</p></article></div><div class="journey-footer"><span><i></i> Clear steps. No pretend instant confirmations.</span><a th:href="@{/services}" data-cursor-label="EXPLORE">Explore available services <b>→</b></a></div></div></section>
+
+  <section class="section container hs-featured-section">
+    <div class="section-heading"><div><span class="eyebrow">LOCAL PROFESSIONALS</span><h2>Ready when <em>you are.</em></h2></div><a class="text-link" th:href="@{/services}" data-cursor-label="VIEW ALL">See all listings →</a></div>
+    <div class="service-grid" th:if="${!#lists.isEmpty(services)}"><article class="service-card" th:each="service : ${services}"><div class="service-card-top"><span class="service-category" th:text="${service.category.name}">Category</span></div><div class="service-card-scene" data-service-scene th:data-category="${service.category.name}" aria-hidden="true"></div><h3 th:text="${service.title}">Service title</h3><p th:text="${service.description}">Service description</p><div class="provider-line"><span class="provider-avatar" th:text="${#strings.substring(service.provider.businessName,0,1)}">P</span><div><strong th:text="${service.provider.businessName}">Provider</strong><small th:text="${service.provider.area + ', ' + service.provider.city}">Location</small></div></div><div class="service-card-bottom"><strong>₹<span th:text="${service.price}">500</span></strong><a th:href="@{/services/{id}(id=${service.id})}" data-cursor-label="OPEN">View details →</a></div></article></div>
+    <div class="empty-state" th:if="${#lists.isEmpty(services)}"><div aria-hidden="true">—</div><h3>Local listings are coming soon.</h3><p>Be the first provider in your area to join HomeServices.</p><a class="btn btn-outline-gold" th:href="@{/register/provider}">Become a provider</a></div>
+  </section>
+</main>
+<div th:replace="~{fragments/layout :: footer}"></div>
+</body>
+</html>

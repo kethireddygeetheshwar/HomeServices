@@ -1,0 +1,87 @@
+<!DOCTYPE html><html lang="en" xmlns:th="http://www.thymeleaf.org"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title th:text="${service.title + ' | HomeServices'}">Service details</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"><link rel="stylesheet" th:href="@{/css/style.css(v=5)}"></head><body><div th:replace="~{fragments/layout :: header}"></div><div th:replace="~{fragments/layout :: alerts}"></div><main class="container page-content"><a class="back-link" th:href="@{/services}">← Back to services</a><section class="service-detail-stage" aria-label="Category-specific service showcase" data-cursor-label="SPIN 3D">
+  <div class="detail-stage-copy" th:switch="${#strings.toLowerCase(service.category.name)}">
+    <div th:case="'electrician'">
+      <span class="eyebrow">ELECTRICAL CARE, CLEARLY EXPLAINED</span>
+      <h2>Power checked.<br><em>Details matter.</em></h2>
+      <p>From a flickering light to a planned installation, describe what you have noticed so the professional can prepare.</p>
+    </div>
+    <div th:case="'plumber'">
+      <span class="eyebrow">PLUMBING, WITHOUT THE GUESSWORK</span>
+      <h2>Better flow.<br><em>Careful work.</em></h2>
+      <p>Share where a leak, blockage or fitting issue appears and help the professional understand the job before arrival.</p>
+    </div>
+    <div th:case="'carpenter'">
+      <span class="eyebrow">CRAFT, MEASURED WITH CARE</span>
+      <h2>Made to fit.<br><em>Made with care.</em></h2>
+      <p>Furniture, doors and fittings all have their details. A short description and a few measurements help set expectations.</p>
+    </div>
+    <div th:case="'painter'">
+      <span class="eyebrow">A FRESH TAKE ON YOUR SPACE</span>
+      <h2>Fresh walls.<br><em>Thoughtful finishes.</em></h2>
+      <p>Share the rooms, surfaces and finish you have in mind to start a clearer conversation about the work.</p>
+    </div>
+    <div th:case="'mechanic'">
+      <span class="eyebrow">REPAIR STARTS WITH THE DETAILS</span>
+      <h2>Know the issue.<br><em>Plan the work.</em></h2>
+      <p>Describe your vehicle and the symptoms you have noticed so the professional has useful context before inspection.</p>
+    </div>
+    <div th:case="'cleaning'">
+      <span class="eyebrow">A MORE THOUGHTFUL CLEAN</span>
+      <h2>Clear surfaces.<br><em>Room to breathe.</em></h2>
+      <p>Tell the professional which rooms and surfaces need attention so the visit can be planned around your priorities.</p>
+    </div>
+    <div th:case="*">
+      <span class="eyebrow">THE CRAFT BEHIND THE SERVICE</span>
+      <h2>Skilled hands.<br><em>Thoughtful work.</em></h2>
+      <p>A closer look at the work your local professional brings to your home.</p>
+    </div>
+    <div class="stage-trust"><span>✦</span> APPROVED SERVICE PROVIDER</div>
+    <span class="stage-interaction-hint" aria-hidden="true">Move cursor to orbit · Click to spin 3D showcase</span>
+  </div>
+  <div class="detail-stage-scene" data-service-scene data-three-scene="category" th:data-category="${service.category.name}" aria-hidden="true"></div>
+  <span class="stage-index" th:text="${'HS / ' + #strings.toUpperCase(#strings.substring(service.category.name,0,2))}">HS / 01</span>
+</section><div class="detail-grid"><section class="detail-main"><span class="service-category" th:text="${service.category.name}">Category</span><h1 th:text="${service.title}">Service title</h1><p class="detail-lead" th:text="${service.description != null ? service.description : 'A professional home service from a local provider.'}">Service description.</p><div class="provider-profile-card"><span class="provider-avatar large" th:text="${#strings.substring(service.provider.businessName,0,1)}">P</span><div><span class="eyebrow">SERVICE PROVIDER</span><h3 th:text="${service.provider.businessName}">Business name</h3><p th:text="${service.provider.experienceYears + ' years experience · ' + service.provider.city}">Location and experience</p><small th:text="${service.provider.area}">Area</small></div><span class="verified-mark">✓ APPROVED</span></div><div class="detail-facts"><div><span>STARTING PRICE</span><strong>₹<span th:text="${service.price}">500</span></strong></div><div><span>ESTIMATED DURATION</span><strong th:text="${service.durationMinutes + ' minutes'}">60 minutes</strong></div><div><span>LOCATION</span><strong th:text="${service.provider.city}">City</strong></div></div><section class="service-prep" aria-labelledby="service-prep-title">
+  <div class="service-prep-heading">
+    <span class="eyebrow">BEFORE THE VISIT</span>
+    <h2 id="service-prep-title">A little context goes a long way.</h2>
+    <p>These quick pointers can help you describe the work. Confirm the final scope and price directly through the listing and booking conversation.</p>
+  </div>
+  <div class="service-prep-grid" th:switch="${#strings.toLowerCase(service.category.name)}">
+    <div class="service-prep-group" th:case="'electrician'">
+      <article class="service-prep-card"><span>01</span><h3>Describe the issue</h3><p>Tell the professional which switch, outlet, light or appliance is affected.</p></article>
+      <article class="service-prep-card"><span>02</span><h3>Share warning signs</h3><p>Mention flickering, tripping or unusual sounds. Do not touch exposed wiring.</p></article>
+      <article class="service-prep-card"><span>03</span><h3>Clear the work area</h3><p>Move items away from the affected area if it is safe to do so.</p></article>
+    </div>
+    <div class="service-prep-group" th:case="'plumber'">
+      <article class="service-prep-card"><span>01</span><h3>Locate the problem</h3><p>Point out the leak, blocked drain or fitting that needs attention.</p></article>
+      <article class="service-prep-card"><span>02</span><h3>Share when it started</h3><p>Note when the issue occurs and whether it is constant or occasional.</p></article>
+      <article class="service-prep-card"><span>03</span><h3>Make access easier</h3><p>Clear the area around the sink, tap or pipe where possible.</p></article>
+    </div>
+    <div class="service-prep-group" th:case="'carpenter'">
+      <article class="service-prep-card"><span>01</span><h3>Name the item</h3><p>Describe the furniture, door, cabinet or fitting that needs work.</p></article>
+      <article class="service-prep-card"><span>02</span><h3>Share measurements</h3><p>Approximate dimensions and a photo can help explain the job.</p></article>
+      <article class="service-prep-card"><span>03</span><h3>Prepare the space</h3><p>Move nearby items so the professional can access the work area.</p></article>
+    </div>
+    <div class="service-prep-group" th:case="'painter'">
+      <article class="service-prep-card"><span>01</span><h3>Identify the surfaces</h3><p>Share which rooms, walls or exterior areas you want painted.</p></article>
+      <article class="service-prep-card"><span>02</span><h3>Choose a direction</h3><p>Share preferred colours, finish and any reference images you have.</p></article>
+      <article class="service-prep-card"><span>03</span><h3>Protect belongings</h3><p>Move fragile items and make furniture accessible where practical.</p></article>
+    </div>
+    <div class="service-prep-group" th:case="'mechanic'">
+      <article class="service-prep-card"><span>01</span><h3>Identify the vehicle</h3><p>Share its make and model, and year if you know it.</p></article>
+      <article class="service-prep-card"><span>02</span><h3>Describe the symptoms</h3><p>Explain what happens, when it happens and any warning lights you noticed.</p></article>
+      <article class="service-prep-card"><span>03</span><h3>Keep details handy</h3><p>Have the keys and relevant vehicle information ready for the appointment.</p></article>
+    </div>
+    <div class="service-prep-group" th:case="'cleaning'">
+      <article class="service-prep-card"><span>01</span><h3>Prioritise rooms</h3><p>List the rooms and areas you would like the professional to focus on.</p></article>
+      <article class="service-prep-card"><span>02</span><h3>Mention delicate surfaces</h3><p>Point out sensitive materials or items that need special care.</p></article>
+      <article class="service-prep-card"><span>03</span><h3>Prepare your space</h3><p>Secure valuables and make access clear before the appointment.</p></article>
+    </div>
+    <div class="service-prep-group" th:case="'*'">
+      <article class="service-prep-card"><span>01</span><h3>Describe the work</h3><p>Share what needs attention and where it is located.</p></article>
+      <article class="service-prep-card"><span>02</span><h3>Add useful context</h3><p>Include timing, measurements or photos when they help explain the request.</p></article>
+      <article class="service-prep-card"><span>03</span><h3>Prepare the area</h3><p>Make the work area accessible before the scheduled visit.</p></article>
+    </div>
+  </div>
+</section>
+<section class="reviews-section"><div class="section-heading compact"><div><span class="eyebrow">CUSTOMER FEEDBACK</span><h2>Reviews</h2></div><span class="rating-average" th:text="${#numbers.formatDecimal(averageRating,1,1) + ' / 5'}">0.0 / 5</span></div><article class="review-item" th:each="review : ${reviews}"><div><strong th:text="${review.booking.customer.fullName}">Customer</strong><span class="review-stars" th:text="${'★'.repeat(review.rating)}">★★★★★</span></div><p th:text="${review.comment != null ? review.comment : 'No written comment.'}">Review comment</p></article><p class="muted" th:if="${#lists.isEmpty(reviews)}">No reviews yet. Be the first customer to share feedback after a completed service.</p></section></section><aside class="booking-card"><span class="eyebrow">BOOK AN APPOINTMENT</span><h2>Choose your time.</h2><form method="get" th:action="@{/services/{id}(id=${service.id})}" class="form-stack"><label>Appointment date<input type="date" name="date" th:value="${selectedDate}" th:min="${T(java.time.LocalDate).now()}"></label><button class="btn btn-outline-gold w-100" type="submit">Check availability</button></form><div th:if="${#lists.isEmpty(slots)}" class="slot-empty">No available slots long enough for this service on this date. This service needs at least <strong th:text="${requiredDurationMinutes + ' minutes'}">60 minutes</strong>. Please try another day or ask the provider to publish a longer slot.</div><form th:if="${userRole == 'CUSTOMER' and !#lists.isEmpty(slots)}" th:action="@{/customer/bookings}" method="post" class="form-stack booking-form"><input type="hidden" name="serviceId" th:value="${service.id}"><label>Available time slots<select name="slotId" required><option value="">Choose a time</option><option th:each="slot : ${slots}" th:value="${slot.id}" th:text="${#temporals.format(slot.startTime, 'hh:mm a') + ' – ' + #temporals.format(slot.endTime, 'hh:mm a')}"></option></select></label><label>Notes for the provider<textarea name="notes" rows="3" maxlength="1000" placeholder="Tell the professional what needs attention (optional)"></textarea></label><button class="btn btn-gold w-100 hs-magnetic" type="submit" data-cursor-label="BOOK">Request booking →</button><small class="muted">Your request remains pending until the provider confirms it.</small></form><div th:if="${userRole == null}" class="login-to-book"><p>Sign in with a customer account to request this appointment.</p><a class="btn btn-gold w-100 hs-magnetic" th:href="@{/login}" data-cursor-label="SIGN IN">Sign in to book</a></div><div th:if="${userRole == 'PROVIDER'}" class="slot-empty">Provider accounts cannot book services. Sign in as a customer to make a booking.</div></aside></div></main><div th:replace="~{fragments/layout :: footer}"></div></body></html>
