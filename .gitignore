@@ -1,0 +1,25 @@
+# Maven build output
+/target/
+
+# Local IDE files
+/.idea/
+*.iml
+/.vscode/
+
+# Node tooling (only if a local frontend toolchain is added later)
+/node_modules/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+*.local.properties
+
+# Logs and operating-system files
+*.log
+.DS_Store
+Thumbs.db
+# Eclipse / Spring Tool Suite metadata
+.classpath
+.project
+.settings/

@@ -1,0 +1,19 @@
+HomeServices/
+├── pom.xml
+├── README.md
+├── src/main/java/com/homeservices
+│   ├── HomeServicesApplication.java
+│   ├── api/                  REST API controllers and DTO records
+│   ├── config/               Security config and development data initializer
+│   ├── controller/           Thymeleaf MVC controllers and error handling
+│   ├── dto/                   Registration form model
+│   ├── entity/                JPA entities
+│   ├── enums/                 Roles, provider states and booking states
+│   ├── repository/            Spring Data JPA repositories
+│   └── service/               Business logic
+└── src/main/resources
+    ├── application.properties
+    ├── schema.sql
+    ├── static/css/style.css
+    ├── static/js/app.js
+    └── templates/             Thymeleaf pages and fragments
