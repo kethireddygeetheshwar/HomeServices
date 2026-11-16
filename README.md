@@ -1,9 +1,15 @@
 # HomeServices — Spring Boot + Thymeleaf + MariaDB
 
-## Project preview
+## Screenshots
 
-![HomeServices cinematic homepage](screenshots/homepage.webp)
+### Cinematic homepage
+![HomeServices homepage](screenshots/homepage.png)
 
+### Customer dashboard
+![HomeServices customer dashboard](screenshots/customer%20dashboard.png)
+
+### Provider dashboard
+![HomeServices provider dashboard](screenshots/provider%20dashboard.png)
 
 A local home-services marketplace built with Java 21, Spring Boot 3.5.16, Spring MVC, Thymeleaf, Spring Security, Spring Data JPA and MariaDB. The frontend is server-rendered HTML with CSS and JavaScript; a small Three.js module adds procedural, interactive 3D showcases with local SVG fallbacks. React is intentionally not used so the current Spring MVC architecture remains simple.
 
